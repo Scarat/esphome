@@ -29,14 +29,14 @@ bool parse_xiaomi_data_byte(uint8_t data_type, const uint8_t *data, uint8_t data
       if (data_length != 2)
         return false;
       const int16_t humidity = uint16_t(data[0]) | (uint16_t(data[1]) << 8);
-      result.humidity = humidity / 10.0f;
+      result.humidity = humidity / 10.00f;
       return true;
     }
     case 0x04: {  // temperature, 2 bytes, 16-bit signed integer (LE), 0.1 °C
       if (data_length != 2)
         return false;
       const int16_t temperature = uint16_t(data[0]) | (uint16_t(data[1]) << 8);
-      result.temperature = temperature / 10.0f;
+      result.temperature = temperature / 10.00f;
       return true;
     }
     case 0x09: {  // conductivity, 2 bytes, 16-bit unsigned integer (LE), 1 µS/cm
