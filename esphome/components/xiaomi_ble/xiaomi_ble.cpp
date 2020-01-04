@@ -15,8 +15,8 @@ bool parse_xiaomi_data_byte(uint8_t data_type, const uint8_t *data, uint8_t data
         return false;
       const int16_t temperature = uint16_t(data[0]) | (uint16_t(data[1]) << 8);
       const int16_t humidity = uint16_t(data[2]) | (uint16_t(data[3]) << 8);
-      result.temperature = temperature / 10.0f;
-      result.humidity = humidity / 10.0f;
+      result.temperature = temperature / 10.00f;
+      result.humidity = humidity / 10.00f;
       return true;
     }
     case 0x0A: {  // battery, 1 byte, 8-bit unsigned integer, 1 %
@@ -161,10 +161,10 @@ bool XiaomiListener::parse_device(const esp32_ble_tracker::ESPBTDevice &device) 
   ESP_LOGD(TAG, "Got Xiaomi %s (%s):", name, device.address_str().c_str());
 
   if (res->temperature.has_value()) {
-    ESP_LOGD(TAG, "  Temperature: %.1f°C", *res->temperature);
+    ESP_LOGD(TAG, "  Temperature: %.2f°C", *res->temperature);
   }
   if (res->humidity.has_value()) {
-    ESP_LOGD(TAG, "  Humidity: %.1f%%", *res->humidity);
+    ESP_LOGD(TAG, "  Humidity: %.2f%%", *res->humidity);
   }
   if (res->battery_level.has_value()) {
     ESP_LOGD(TAG, "  Battery Level: %.0f%%", *res->battery_level);
