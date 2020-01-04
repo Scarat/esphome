@@ -15,8 +15,8 @@ bool parse_xiaomi_data_byte(uint8_t data_type, const uint8_t *data, uint8_t data
         return false;
       const int16_t temperature = uint16_t(data[0]) | (uint16_t(data[1]) << 8);
       const int16_t humidity = uint16_t(data[2]) | (uint16_t(data[3]) << 8);
-      ESP_LOGD(TAG, "  Temp: %.0f°C", temperature / 10.00f);
-      ESP_LOGD(TAG, "  Hum: %.0f%%", humidity / 10.00f);
+      ESP_LOGD(TAG, "  Temp: %.2f°C", temperature / 10.00f);
+      ESP_LOGD(TAG, "  Hum: %.2f%%", humidity / 10.00f);
       // uint16_t output;
       //output = (uint16_t(data[0] & 0xFF) << 8) | (data[1] & 0xFF);
       ESP_LOGD(TAG,  "data0: 0x%04X", uint16_t(data[0]));
